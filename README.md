@@ -1,2 +1,6 @@
 # git-issues
-A way to get Git Issues offline
+A way to get Git Issues offline.
+
+## Install
+
+## Deleting
