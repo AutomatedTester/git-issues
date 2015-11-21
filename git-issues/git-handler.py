@@ -29,6 +29,10 @@ def get_issues(repos):
             repo_slug = repo_slug_match.group(1)
             response = requests.get(GITHUB_API_ADDRESS + "repos/" +repo_slug + "/issues")
             issues += response.json()
+
+    write_issues_to_disk(issues)
+
+def write_issues_to_disk(issues)
     git_issues_dir = os.path.expanduser("~/.git-issues/")
     if not os.path.exists(git_issues_dir):
         os.makedirs(git_issues_dir)
