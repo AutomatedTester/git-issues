@@ -1,3 +1,4 @@
+import os
 import re
 import subprocess
 import requests
@@ -23,12 +24,18 @@ def get_issues(repos):
     import re
     for k, v in repos.items():
         repo_slug_match = re.search("\:(.*\/.*)\.git", v)
-        import pdb; pdb.set_trace()
 
         if repo_slug_match is not None:
             repo_slug = repo_slug_match.group(1)
             response = requests.get(GITHUB_API_ADDRESS + "repos/" +repo_slug + "/issues")
             issues += response.json()
+    git_issues_dir = os.path.expanduser("~/.git-issues/")
+    if not os.path.exists(git_issues_dir):
+        os.makedirs(git_issues_dir)
+
+    with open(git_issues_dir + "%s.json" % re.search("\:.*\/(.*)\.git", repos['origin']).group(1), 'w') as f:
+        import json
+        f.write(json.dumps(issues))
 
 
 if __name__ == '__main__':
