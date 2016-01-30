@@ -32,7 +32,7 @@ def get_issues(repos):
 
     write_issues_to_disk(issues)
 
-def write_issues_to_disk(issues)
+def write_issues_to_disk(issues):
     git_issues_dir = os.path.expanduser("~/.git-issues/")
     if not os.path.exists(git_issues_dir):
         os.makedirs(git_issues_dir)
